@@ -1,0 +1,540 @@
+<!-- admin page starts here -->
+
+<%-include("../partials/header") %>
+
+<%-include("../partials/flash") %>
+
+<style>
+table {
+border-collapse: collapse;
+border-spacing: 0;
+width: 100%;
+border: 1px solid #ddd;
+}
+
+th, td {
+text-align: left;
+padding: 8px;
+border: 1px solid #ddd;
+}
+
+
+/* style.css */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tab-header {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: -10px
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+  /*border: 1px solid #ccc;*/
+}
+
+.tab-content.active {
+  display: block;
+}
+
+#trans{
+  overflow-x: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.search1 {
+  width: 70%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #fdd200;
+  border-right: none;
+  padding: 5px;
+  margin-top: -0px;
+  height: 40px;
+  border-radius: 25px 0 0 25px;
+  outline: none;
+  color: white;
+}
+
+.searchTerm:focus{
+  color: white;
+}
+
+::placeholder{
+  color: white;
+  font-size: 24px;
+  outline: none;
+  background-color: transparent;
+}
+
+.searchButton {
+  width: 100px;
+  position: absolute;
+  height: 40px;
+  border: 3px solid #fdd200;
+  background: #fdd200;
+  text-align: center;
+  color: #fff;
+  left: 95%;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+h3{
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  height: 10%
+}
+/*Resize the wrap to see the search bar change!*/
+#wrap{
+  width: 80%;
+  position: relative;
+  top:  10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 600px) {
+  #wrap{
+    width: 70%;
+    position: relative;
+    top: 25%;
+    left: 41%;
+    padding-bottom: 20px;
+    transform: translate(-50%, -50%);
+  }
+  h3{
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    height: 10%
+  }
+}
+
+/*services*/
+
+#services{
+  margin-top: 90px;
+  margin-bottom: 40px;
+}
+/* Clear floats after the columns */
+.row:after {
+ content: "";
+ display: table;
+ clear: both;
+}
+
+.column1 {
+ float: left;
+ width: 23%;
+ margin-top: 6px;
+ padding: 10px;
+ margin: 10px;
+ border: 3px solid #fdd200;
+ border-top-right-radius: 20%;
+ border-bottom-left-radius: 10%;
+}
+
+.column2 {
+ float: left;
+ width: 30%;
+ margin-top: 6px;
+ padding: 10px;
+ margin: 10px;
+ border: 3px solid #fdd200;
+ border-radius: 5%;
+ text-align: center;
+}
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+ .column1 {
+   width: 45%;
+   margin: 10;
+ }
+ .column2 {
+   width: 100%;
+   margin: 10 0px;
+}
+
+#subscription{
+  margin-top: 120px;
+}
+
+}
+
+/*services*/
+
+
+/* 7 */
+.btn-7 {
+background: linear-gradient(0deg, rgba(255,151,0,1) 0%, rgba(251,75,2,1) 100%);
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.btn-7 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-7:before,
+.btn-7:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 0;
+  background: rgba(251,75,2,1);
+  box-shadow:
+   -7px -7px 20px 0px rgba(255,255,255,.9),
+   -4px -4px 5px 0px rgba(255,255,255,.9),
+   7px 7px 20px 0px rgba(0,0,0,.2),
+   4px 4px 5px 0px rgba(0,0,0,.3);
+  transition: all 0.3s ease;
+}
+.btn-7:before{
+   height: 0%;
+   width: 2px;
+}
+.btn-7:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-7:hover{
+  color: white;
+  background: transparent;
+}
+.btn-7:hover:before {
+  height: 100%;
+}
+.btn-7:hover:after {
+  width: 100%;
+}
+.btn-7 span:before,
+.btn-7 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  background: rgba(251,75,2,1);
+  box-shadow:
+   -7px -7px 20px 0px rgba(255,255,255,.9),
+   -4px -4px 5px 0px rgba(255,255,255,.9),
+   7px 7px 20px 0px rgba(0,0,0,.2),
+   4px 4px 5px 0px rgba(0,0,0,.3);
+  transition: all 0.3s ease;
+}
+.btn-7 span:before {
+  width: 2px;
+  height: 0%;
+}
+.btn-7 span:after {
+  height: 2px;
+  width: 0%;
+}
+.btn-7 span:hover:before {
+  height: 100%;
+}
+.btn-7 span:hover:after {
+  width: 100%;
+}
+
+
+.custom-btn {
+  width: 150px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+</style>
+
+<header>
+    <nav>
+        <ul class='nav-bar'>
+            <li class='logo'><a href='/'><img src='./images/logo.png'/></a></li>
+            <input type='checkbox' id='check' />
+            <span class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile">Account</a></li>
+                <li><a href="/calculator">calculator</a></li>
+                <li><a href="/report">Reports</a></li>
+                <li><a href="/transaction">Transactions</a></li>
+                <li><a href="/logout" class="btn btn-outline-secondary">logout</a></li>
+                <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+            </span>
+            <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+             <a id="logout" href="/logout">logout</a>
+        </ul>
+    </nav>
+    </header>
+
+<body>
+
+  <p>Hello welcome to Admin Portal</p>
+  <p>Please behavior responsibily when you are here</p>
+
+  <!-- partial:index.partial.html -->
+  <div id="wrap">
+    <form action="/search" method="GET">
+     <div class="search">
+        <input type="email" name="email" class="searchTerm" placeholder="What are you looking for?">
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+       </button>
+     </div>
+    </form>
+  </div>
+  <!-- partial -->
+
+    <!-- services section starts  -->
+
+  <section class="services" id="services">
+
+        <div class="row">
+          <div class="column1"><div class="block" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px">
+             <h3><%= totalUsers %></h3>
+            <h3>TotalUsers</h3>
+         </div>
+        </div>
+
+
+
+        </div>
+
+    </section>
+
+    <!-- services section ends -->
+
+
+
+     <ul class="tab-list">
+        <button class="custom-btn btn-7"><span><li class="tab-header active" onclick="showTab(0)">All users</li></span></button>
+        <button class="custom-btn btn-7"><span><li class="tab-header" onclick="showTab(1)">make subscription</li></span></button>
+        <button class="custom-btn btn-7"><span><li class="tab-header" onclick="showTab(2)">Tab 2</li></span></button>
+        <button class="custom-btn btn-7"><span><li class="tab-header" onclick="showTab(3)">Tab 3</li></span></button>
+        <button class="custom-btn btn-7"><span><li class="tab-header" onclick="showTab(4)">Tab 4</li></span></button>
+     </ul>
+
+
+ <div class="tabs">
+ <div id="trans" class="tab-content active">
+   <table style="color: white" class="table table-bordered border-primary mt-2">
+     <thead>
+      <tr>
+        <th>S/No</th>
+        <th>Signup update</th>
+        <th>subscription type</th>
+        <th>subscription EndDate</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Verified</th>
+        <th>Suspended</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(function(user,i) {  %>
+        <tr>
+          <td><%= i+1%></td>
+          <td><%= moment(user.createdAt).format("lll") %></td>
+          <td><%= user.subscriptionType %></td>
+          <td><%= moment(user.monthlyEndDate).format("lll") %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.isVerified ? 'Yes' : 'No' %></td>
+          <td><%= user.isSuspended ? 'Yes' : 'No' %></td>
+          <td colspan="2">
+            <% if (!user.isSuspended) { %>
+              <form method="post" action="/suspendUser">
+                <input type="hidden" name="userId" value="<%= user._id %>">
+                <button type="submit">Suspend</button>
+              </form>
+            <% } else { %>
+              <form method="post" action="/unsuspendUser">
+                <input type="hidden" name="userId" value="<%= user._id %>">
+                <button type="submit">Unsuspend</button>
+              </form>
+            <% } %>
+          </td>
+          <td>
+            <form method="post" action="/deleteUser">
+              <input type="hidden" name="userId" value="<%= user._id %>">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+</div>
+
+
+<div id="subscription" class="tab-content">
+
+  <body>
+    <h2>Welcome to Subscription page, Tell us which plan do you want to go with?</h2>
+
+  <% if (founduser.length > 0) { %>
+        <ul>
+            <% founduser.forEach(user => { %>
+                 <p><%= user.email %></p>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No users found.</p>
+    <% } %>
+
+<div class="row" id="subscription">
+  <div class="column2">
+    <h3>Monthly subscription</h3>
+    <h3>Subscribe now</h3>
+    <form action="/monthly" method="post">
+      <div class="search1">
+         <input type="email" name="email" class="searchTerm" placeholder="email address" required>
+         <button type="submit" class="searchButton">
+           <i class="fa fa-submit">submit</i>
+        </button>
+      </div>
+    </form>
+
+    <h3>Cancel Subscription</h3>
+    <form action="/monthlyCancellation" method="post">
+      <div class="search1">
+         <input type="email" name="email" class="searchTerm" placeholder="email address" required>
+         <button type="submit" class="searchButton">
+           <i class="fa-solid fa-xmark1">cancel</i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+
+  <div class="column2">
+    <h3>Quarterly Subscription</h3>
+    <h3>subscribe now</h3>
+    <form action="/quarterly" method="post">
+      <div class="search1">
+         <input type="email" name="email" class="searchTerm" placeholder="email address" required>
+         <button type="submit" class="searchButton">
+           <i class="fa fa-submit">submit</i>
+        </button>
+      </div>
+    </form>
+
+    <h3>Cancel Subscription</h3>
+    <form action="/quarterlyCancellation" method="post">
+      <div class="search1">
+         <input type="email" name="email" class="searchTerm" placeholder="email address" required>
+         <button type="submit" class="searchButton">
+           <i class="fa-solid fa-xmark1">cancel</i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="column2">
+    <h3>Annually Subscription</h3>
+    <h3>subscribe now</h3>
+    <form action="/annually" method="post">
+      <div class="search1">
+         <input type="email" name="email" class="searchTerm" placeholder="email address" required>
+         <button type="submit" class="searchButton">
+           <i class="fa fa-submit">submit</i>
+        </button>
+      </div>
+    </form>
+
+    <h3>Cancel Subscription</h3>
+    <form action="/annuallyCancellation" method="post">
+      <div class="search1">
+         <input type="email" name="email" class="searchTerm" placeholder="email address" required>
+         <button type="submit" class="searchButton">
+           <i class="fa-solid fa-xmark1">cancel</i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>
+  </body>
+
+</div>
+
+
+<div class="tab-content">
+<h1>monthly    ewewewe  Cancellation</h1>
+</div>
+
+<div class="tab-content">
+<h1>monthly fffffffffffffffffffffbbbbbbbbbbbbbbb</h1>
+</div>
+
+<div class="tab-content">
+<h1>monthly   rrrrrrrrrrrrrrrrrrrrrr</h1>
+</div>
+
+
+</div>
+
+</body>
+
+
+
+
+
+<script type="text/javascript">
+// JavaScript to handle tab switching
+
+function showTab(tabIndex) {
+  const tabHeaders = document.querySelectorAll('.tab-header');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  for (let i = 0; i < tabHeaders.length; i++) {
+    tabHeaders[i].classList.remove('active');
+    tabContents[i].classList.remove('active');
+  }
+
+  tabHeaders[tabIndex].classList.add('active');
+  tabContents[tabIndex].classList.add('active');
+}
+
+</script>
